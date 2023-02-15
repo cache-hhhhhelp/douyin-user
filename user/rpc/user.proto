@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package user;
+
+
+option go_package = "./user";
+
+message RegisterOrLoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message DataResponse {
+  int32 status_code = 1;
+  optional string status_msg = 2;
+  int64 user_id = 3;
+  string token = 4;
+}
+
+message UserRequest {
+  int64 user_id = 1;
+  string token = 2;
+}
+
+message UserResponse {
+  int32 status_code = 1;
+  optional string status_msg = 2;
+  UserData user = 3;
+}
+
+message UserData {
+  int64 id = 1;
+  string name = 2;
+  optional int64 follow_count = 3;
+  optional int64 follower_count = 4;
+  bool is_follow = 5;
+}
+
+service user {
+  rpc registerUser(RegisterOrLoginRequest) returns(DataResponse);
+  rpc loginUser(RegisterOrLoginRequest) returns(DataResponse);
+  rpc getUser(UserRequest) returns(UserResponse);
+}

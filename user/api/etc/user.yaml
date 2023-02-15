@@ -1,0 +1,23 @@
+Name: user
+Host: 0.0.0.0
+Port: 8888
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+
+Auth:
+  AccessSecret: yhgjfhf237fa23uif894jbfni34riua32
+  AccessExpire: 86400
+
+CacheRedis:
+  - Host: 192.168.1.17:6379
+    Type: node
+    Pass:
+
+Log:
+  Mode: file
+  Path: ../logs/user-api
+  Level: error

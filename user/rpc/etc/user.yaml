@@ -1,0 +1,9 @@
+Name: user.rpc
+ListenOn: 0.0.0.0:8080
+
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: user.rpc
+
+DataSourceName: root:154201580@(127.0.0.1:3306)/douyin?charset=utf8&parseTime=True
