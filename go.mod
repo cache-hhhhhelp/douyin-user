@@ -3,14 +3,11 @@ module microservice
 go 1.19
 
 require (
-	github.com/golang-jwt/jwt/v4 v4.4.3
-	github.com/pkg/errors v0.9.1
+	github.com/lib/pq v1.10.7
 	github.com/zeromicro/go-zero v1.4.4
 	golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
 	google.golang.org/grpc v1.53.0
 	google.golang.org/protobuf v1.28.1
-	gorm.io/driver/mysql v1.4.6
-	gorm.io/gorm v1.24.5
 )
 
 require (
@@ -33,11 +30,8 @@ require (
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/pprof v0.0.0-20211214055906-6f57359322fd // indirect
-	github.com/google/uuid v1.3.0 // indirect
 	github.com/googleapis/gnostic v0.5.5 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.0 // indirect
-	github.com/jinzhu/inflection v1.0.0 // indirect
-	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mattn/go-colorable v0.1.9 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect

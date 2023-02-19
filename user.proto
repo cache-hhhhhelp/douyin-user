@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package user;
+
+
+option go_package = "./user";
+
+message RegisterOrLoginReq {
+  string username = 1;
+  string password = 2;
+}
+
+message DataResp {
+  int64 user_id = 1;
+}
+
+message UserReq {
+  int64 user_id = 1;
+}
+
+message ManyUserReq {
+  repeated int64 user_id = 1;
+}
+
+message UserResp {
+  int64 id = 1; // 用户id
+  string name = 2; // 用户名称
+}
+
+message ManyUserResp {
+  repeated UserResp users = 1;
+}
+
+service user {
+  rpc registerUser(RegisterOrLoginReq) returns(DataResp);
+  rpc loginUser(RegisterOrLoginReq) returns(DataResp);
+  rpc getUser(UserReq) returns(UserResp);
+  rpc getManyUser(ManyUserReq) returns(ManyUserResp);
+}
