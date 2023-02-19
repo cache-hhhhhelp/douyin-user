@@ -31,7 +31,7 @@ message ManyUserResp {
   repeated UserResp users = 1;
 }
 
-service user {
+service UserRpc{
   rpc registerUser(RegisterOrLoginReq) returns(DataResp);
   rpc loginUser(RegisterOrLoginReq) returns(DataResp);
   rpc getUser(UserReq) returns(UserResp);

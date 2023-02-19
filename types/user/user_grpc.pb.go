@@ -18,194 +18,194 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UserClient is the client API for User service.
+// UserRpcClient is the client API for UserRpc service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserClient interface {
+type UserRpcClient interface {
 	RegisterUser(ctx context.Context, in *RegisterOrLoginReq, opts ...grpc.CallOption) (*DataResp, error)
 	LoginUser(ctx context.Context, in *RegisterOrLoginReq, opts ...grpc.CallOption) (*DataResp, error)
 	GetUser(ctx context.Context, in *UserReq, opts ...grpc.CallOption) (*UserResp, error)
 	GetManyUser(ctx context.Context, in *ManyUserReq, opts ...grpc.CallOption) (*ManyUserResp, error)
 }
 
-type userClient struct {
+type userRpcClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserClient(cc grpc.ClientConnInterface) UserClient {
-	return &userClient{cc}
+func NewUserRpcClient(cc grpc.ClientConnInterface) UserRpcClient {
+	return &userRpcClient{cc}
 }
 
-func (c *userClient) RegisterUser(ctx context.Context, in *RegisterOrLoginReq, opts ...grpc.CallOption) (*DataResp, error) {
+func (c *userRpcClient) RegisterUser(ctx context.Context, in *RegisterOrLoginReq, opts ...grpc.CallOption) (*DataResp, error) {
 	out := new(DataResp)
-	err := c.cc.Invoke(ctx, "/user.user/registerUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.UserRpc/registerUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) LoginUser(ctx context.Context, in *RegisterOrLoginReq, opts ...grpc.CallOption) (*DataResp, error) {
+func (c *userRpcClient) LoginUser(ctx context.Context, in *RegisterOrLoginReq, opts ...grpc.CallOption) (*DataResp, error) {
 	out := new(DataResp)
-	err := c.cc.Invoke(ctx, "/user.user/loginUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.UserRpc/loginUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) GetUser(ctx context.Context, in *UserReq, opts ...grpc.CallOption) (*UserResp, error) {
+func (c *userRpcClient) GetUser(ctx context.Context, in *UserReq, opts ...grpc.CallOption) (*UserResp, error) {
 	out := new(UserResp)
-	err := c.cc.Invoke(ctx, "/user.user/getUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.UserRpc/getUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userClient) GetManyUser(ctx context.Context, in *ManyUserReq, opts ...grpc.CallOption) (*ManyUserResp, error) {
+func (c *userRpcClient) GetManyUser(ctx context.Context, in *ManyUserReq, opts ...grpc.CallOption) (*ManyUserResp, error) {
 	out := new(ManyUserResp)
-	err := c.cc.Invoke(ctx, "/user.user/getManyUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.UserRpc/getManyUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserServer is the server API for User service.
-// All implementations must embed UnimplementedUserServer
+// UserRpcServer is the server API for UserRpc service.
+// All implementations must embed UnimplementedUserRpcServer
 // for forward compatibility
-type UserServer interface {
+type UserRpcServer interface {
 	RegisterUser(context.Context, *RegisterOrLoginReq) (*DataResp, error)
 	LoginUser(context.Context, *RegisterOrLoginReq) (*DataResp, error)
 	GetUser(context.Context, *UserReq) (*UserResp, error)
 	GetManyUser(context.Context, *ManyUserReq) (*ManyUserResp, error)
-	mustEmbedUnimplementedUserServer()
+	mustEmbedUnimplementedUserRpcServer()
 }
 
-// UnimplementedUserServer must be embedded to have forward compatible implementations.
-type UnimplementedUserServer struct {
+// UnimplementedUserRpcServer must be embedded to have forward compatible implementations.
+type UnimplementedUserRpcServer struct {
 }
 
-func (UnimplementedUserServer) RegisterUser(context.Context, *RegisterOrLoginReq) (*DataResp, error) {
+func (UnimplementedUserRpcServer) RegisterUser(context.Context, *RegisterOrLoginReq) (*DataResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
 }
-func (UnimplementedUserServer) LoginUser(context.Context, *RegisterOrLoginReq) (*DataResp, error) {
+func (UnimplementedUserRpcServer) LoginUser(context.Context, *RegisterOrLoginReq) (*DataResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
 }
-func (UnimplementedUserServer) GetUser(context.Context, *UserReq) (*UserResp, error) {
+func (UnimplementedUserRpcServer) GetUser(context.Context, *UserReq) (*UserResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
-func (UnimplementedUserServer) GetManyUser(context.Context, *ManyUserReq) (*ManyUserResp, error) {
+func (UnimplementedUserRpcServer) GetManyUser(context.Context, *ManyUserReq) (*ManyUserResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetManyUser not implemented")
 }
-func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
+func (UnimplementedUserRpcServer) mustEmbedUnimplementedUserRpcServer() {}
 
-// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserServer will
+// UnsafeUserRpcServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserRpcServer will
 // result in compilation errors.
-type UnsafeUserServer interface {
-	mustEmbedUnimplementedUserServer()
+type UnsafeUserRpcServer interface {
+	mustEmbedUnimplementedUserRpcServer()
 }
 
-func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
-	s.RegisterService(&User_ServiceDesc, srv)
+func RegisterUserRpcServer(s grpc.ServiceRegistrar, srv UserRpcServer) {
+	s.RegisterService(&UserRpc_ServiceDesc, srv)
 }
 
-func _User_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserRpc_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterOrLoginReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).RegisterUser(ctx, in)
+		return srv.(UserRpcServer).RegisterUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.user/registerUser",
+		FullMethod: "/user.UserRpc/registerUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).RegisterUser(ctx, req.(*RegisterOrLoginReq))
+		return srv.(UserRpcServer).RegisterUser(ctx, req.(*RegisterOrLoginReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_LoginUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserRpc_LoginUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterOrLoginReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).LoginUser(ctx, in)
+		return srv.(UserRpcServer).LoginUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.user/loginUser",
+		FullMethod: "/user.UserRpc/loginUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).LoginUser(ctx, req.(*RegisterOrLoginReq))
+		return srv.(UserRpcServer).LoginUser(ctx, req.(*RegisterOrLoginReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserRpc_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).GetUser(ctx, in)
+		return srv.(UserRpcServer).GetUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.user/getUser",
+		FullMethod: "/user.UserRpc/getUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetUser(ctx, req.(*UserReq))
+		return srv.(UserRpcServer).GetUser(ctx, req.(*UserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_GetManyUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserRpc_GetManyUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ManyUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).GetManyUser(ctx, in)
+		return srv.(UserRpcServer).GetManyUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.user/getManyUser",
+		FullMethod: "/user.UserRpc/getManyUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetManyUser(ctx, req.(*ManyUserReq))
+		return srv.(UserRpcServer).GetManyUser(ctx, req.(*ManyUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// User_ServiceDesc is the grpc.ServiceDesc for User service.
+// UserRpc_ServiceDesc is the grpc.ServiceDesc for UserRpc service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.user",
-	HandlerType: (*UserServer)(nil),
+var UserRpc_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "user.UserRpc",
+	HandlerType: (*UserRpcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "registerUser",
-			Handler:    _User_RegisterUser_Handler,
+			Handler:    _UserRpc_RegisterUser_Handler,
 		},
 		{
 			MethodName: "loginUser",
-			Handler:    _User_LoginUser_Handler,
+			Handler:    _UserRpc_LoginUser_Handler,
 		},
 		{
 			MethodName: "getUser",
-			Handler:    _User_GetUser_Handler,
+			Handler:    _UserRpc_GetUser_Handler,
 		},
 		{
 			MethodName: "getManyUser",
-			Handler:    _User_GetManyUser_Handler,
+			Handler:    _UserRpc_GetManyUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
