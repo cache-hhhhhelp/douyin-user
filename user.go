@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"microservice/internal/config"
-	"microservice/internal/server"
-	"microservice/internal/svc"
-	"microservice/types/user"
+	"github.com/cache-hhhhhelp/douyin-user/internal/config"
+	"github.com/cache-hhhhhelp/douyin-user/internal/server"
+	"github.com/cache-hhhhhelp/douyin-user/internal/svc"
+	"github.com/cache-hhhhhelp/douyin-user/types/user"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

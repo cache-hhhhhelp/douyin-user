@@ -5,9 +5,9 @@ package server
 
 import (
 	"context"
-	"microservice/internal/logic"
-	"microservice/internal/svc"
-	"microservice/types/user"
+	"github.com/cache-hhhhhelp/douyin-user/internal/logic"
+	"github.com/cache-hhhhhelp/douyin-user/internal/svc"
+	"github.com/cache-hhhhhelp/douyin-user/types/user"
 )
 
 type UserServer struct {

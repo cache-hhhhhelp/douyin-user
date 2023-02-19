@@ -1,9 +1,9 @@
 package svc
 
 import (
+	"github.com/cache-hhhhhelp/douyin-user/internal/config"
+	"github.com/cache-hhhhhelp/douyin-user/internal/model"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
-	"microservice/internal/config"
-	"microservice/internal/model"
 )
 
 type ServiceContext struct {

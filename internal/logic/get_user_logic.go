@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"microservice/internal/svc"
-	"microservice/types/user"
+	"github.com/cache-hhhhhelp/douyin-user/internal/svc"
+	"github.com/cache-hhhhhelp/douyin-user/types/user"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

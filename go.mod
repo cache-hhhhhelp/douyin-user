@@ -1,4 +1,4 @@
-module microservice
+module github.com/cache-hhhhhelp/douyin-user
 
 go 1.19
 
