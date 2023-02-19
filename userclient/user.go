@@ -6,7 +6,7 @@ package userclient
 import (
 	"context"
 
-	"microservice/types/user"
+	"github.com/cache-hhhhhelp/douyin-user/types/user"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
